@@ -36,10 +36,10 @@ jobs:
       uses: andreiio/rclone-release@v1
       with:
         bucket: "s3:release"
-		publish_dir: ./public
-		release_name: project-name
-	  env:
-		RCLONE_CONFIG_S3_TYPE: s3
+        publish_dir: ./public
+        release_name: project-name
+      env:
+        RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
 ```
