@@ -1,0 +1,25 @@
+name: 'rclone-release'
+description: 'Take a directory, rename, archive and upload it via rclone'
+author: 'Andrei Ioniță'
+inputs:
+  dest:
+    description: 'Upload destination, in `dest:full/path` format. Will be directly passed to rclone.'
+    required: true
+  publish_dir:
+    description: 'Directory to archive'
+	required: true
+  release_name:
+    description: 'Name of directory that groups all the project's releases and individual release archive base name'
+	required: true
+  release_tag:
+    description: '(optional) Unique identifier that gets appended to the archive file name. Defaults to `<tag-name>_<commit-short-sha>` where tags exist and `<commit-short-sha>` for everything else.'
+	required: false
+outputs:
+  release:
+    description: 'Full archive path on remote'
+runs:
+  using: 'docker'
+  image: 'docker://andreiio/rclone-release:latest'
+branding:
+  icon: 'package'
+  color: 'red'

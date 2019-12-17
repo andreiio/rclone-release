@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+set -euo pipefail
+
+if [ -z $INPUT_BUCKET ]; then
+	echo "[ERROR] BUCKET can't be empty."
+	exit 1
+fi
+
+if [ -z $INPUT_PUBLISH_DIR ]; then
+	echo "[ERROR] PUBLISH_DIR can't be empty."
+	exit 1
+elif [ ! -d $INPUT_PUBLISH_DIR ]; then
+	echo "[ERROR] PUBLISH_DIR '$INPUT_PUBLISH_DIR' doesn't exist."
+	exit 1
+fi
+
+if [ -z $INPUT_RELEASE_NAME ]; then
+	echo "[ERROR] RELEASE_NAME can't be empty."
+	exit 1
+fi
+
+if [ -z ${INPUT_RELEASE_TAG-} ]; then
+	case $GITHUB_REF in
+		refs/tags/*)
+			INPUT_RELEASE_TAG=${GITHUB_REF/refs\/tags\//}_
+			;;
+		*)
+			INPUT_RELEASE_TAG=
+			;;
+	esac
+
+	INPUT_RELEASE_TAG=${INPUT_RELEASE_TAG}${GITHUB_SHA:0:8}
+fi
+
+cp -r $INPUT_PUBLISH_DIR $INPUT_RELEASE_NAME
+
+zip -r ${INPUT_RELEASE_NAME}.zip $INPUT_RELEASE_NAME
+
+rclone copyto ${INPUT_RELEASE_NAME}.zip ${INPUT_BUCKET}/${INPUT_RELEASE_NAME}/${INPUT_RELEASE_NAME}_${INPUT_RELEASE_TAG}.zip
+
+echo "::set-output name=release::${INPUT_BUCKET}/${INPUT_RELEASE_NAME}/${INPUT_RELEASE_NAME}_${INPUT_RELEASE_TAG}.zip"
