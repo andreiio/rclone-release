@@ -33,7 +33,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Release
-      uses: andreiio/rclone-release@v1
+      uses: andreiio/rclone-release@v0.1
       with:
         bucket: "s3:release"
         publish_dir: ./public
