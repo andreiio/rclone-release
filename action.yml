@@ -9,7 +9,7 @@ inputs:
     description: 'Directory to archive'
     required: true
   release_name:
-    description: 'Name of directory that groups all the project's releases and individual release archive base name'
+    description: 'Name of directory that groups all the project''s releases and individual release archive base name'
     required: true
   release_tag:
     description: '(optional) Unique identifier that gets appended to the archive file name. Defaults to `<tag-name>_<commit-short-sha>` where tags exist and `<commit-short-sha>` for everything else.'
