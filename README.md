@@ -30,10 +30,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: Release
-      uses: andreiio/rclone-release@v0.1
+      uses: andreiio/rclone-release@v0.2
       with:
         bucket: "s3:release"
         publish_dir: ./public
