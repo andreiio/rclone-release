@@ -19,7 +19,7 @@ outputs:
     description: 'Full archive path on remote'
 runs:
   using: 'docker'
-  image: 'docker://andreiio/rclone-release:latest'
+  image: 'docker://andreiio/rclone-release:0.2'
 branding:
   icon: 'package'
   color: 'red'
