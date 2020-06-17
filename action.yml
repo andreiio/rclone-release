@@ -2,7 +2,7 @@ name: 'rclone-release'
 description: 'Take a directory, rename, archive and upload it via rclone'
 author: 'andreiio'
 inputs:
-  dest:
+  bucket:
     description: 'Upload destination, in `dest:full/path` format. Will be directly passed to rclone.'
     required: true
   publish_dir:
