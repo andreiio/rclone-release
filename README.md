@@ -9,7 +9,7 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 ### Inputs
 
-* `dest` - Upload destination, in `dest:full/path` format. Will be directly passed to rclone
+* `bucket` - Upload destination, in `dest:full/path` format. Will be directly passed to rclone
 * `publish_dir` - Directory to archive
 * `release_name` - Name of directory that groups all the project's releases and individual release archive base name
 * `release_tag` - (optional) Unique identifier that gets appended to the archive file name. Defaults to `<tag-name>_<commit-short-sha>` where tags exist and `<commit-short-sha>` for everything else.
@@ -33,7 +33,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Release
-      uses: andreiio/rclone-release@v0.2
+      uses: andreiio/rclone-release@v1
       with:
         bucket: "s3:release"
         publish_dir: ./public
