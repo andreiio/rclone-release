@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ARG RCLONE_VERSION=v1.52.1
+ARG RCLONE_VERSION=v1.53.1
 
 RUN apk add --no-cache \
 	ca-certificates \
